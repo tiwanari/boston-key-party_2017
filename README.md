@@ -1,6 +1,6 @@
 # boston-key-party しゃれおつ
 
-- [概要](http://bostonkeyparty.net/)
+- [ページ](http://bostonkeyparty.net/)
 - 2017年02月25日 (土) 10:00～27日 (月)15:00 (JST)
 
 ```
@@ -10,7 +10,7 @@
 
 # みんなのスケジュール感
 
-- nari: 「僕は土曜午後ちょっと抜けますじ」
+- nari: 「僕は土曜午後ちょっと抜けます」
 - ueda: 「」
 - cks: 「」
 - mandai.yusaku: 「」
