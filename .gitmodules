@@ -1,0 +1,4 @@
+[submodule "rsa_buffet/wiener"]
+	path = rsa_buffet/wiener
+	url = git@github.com:pablocelayes/rsa-wiener-attack.git
+	ignore = dirty
