@@ -1,10 +1,12 @@
+#! /usr/bin/python
+
 import random
+import fractions
 from Crypto.Cipher import AES,PKCS1_OAEP
 from Crypto.PublicKey import RSA
 from base64 import b64decode
 
 import sys, os
-
 
 def decrypt(private_key, ciphertext):
   """Decrypt a message with a given private key.
@@ -45,6 +47,9 @@ def is_square(n):
     x = isqrt(n)
     return x*x == n
 
+def lcm(x, y):
+    return x * y // fractions.gcd(x, y)
+
 def fermat(n):
     a = isqrt(n)
     b2 = a*a - n
@@ -53,6 +58,28 @@ def fermat(n):
         b2 = a*a - n
     return a - isqrt(b2)
 
+
+def ex_euclid(x, y):
+    c0, c1 = x, y
+    a0, a1 = 1, 0
+    b0, b1 = 0, 1
+ 
+    while c1 != 0:
+        m = c0 % c1
+        q = c0 // c1
+ 
+        c0, c1 = c1, m
+        a0, a1 = a1, (a0 - q * a1)
+        b0, b1 = b1, (b0 - q * b1)
+ 
+    return c0, a0, b0
+
+def rsa_gen_d(p,q):
+  e = 65537
+  l = lcm(p-1, q-1)
+  c, a, b = ex_euclid(e, l)
+  d = a % l
+  return d
 
 if __name__ == '__main__':
     key_file = "./rsa-buffet/key-1.pem"
@@ -63,3 +90,16 @@ if __name__ == '__main__':
     q = imported.n / p
     print "p = "+ str(p)
     print "q = "+ str(q)
+
+    d = rsa_gen_d(p,q)
+    print d
+    new_key = RSA.construct((imported.n,imported.e,d))
+
+    for i in range(1,6):
+      cipher_file = "./rsa-buffet/ciphertext-" + str(i) + ".bin"
+      cipher = open(cipher_file).read()
+      result = decrypt(new_key, cipher)
+      if result:
+        print cipher_file + " => "
+        print result
+        break
