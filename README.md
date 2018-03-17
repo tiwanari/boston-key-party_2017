@@ -1,4 +1,5 @@
 # boston-key-party しゃれおつ
+UPDATE: 作業用レポジトリ公開しちゃいました
 
 - [ページ](http://bostonkeyparty.net/)
 - 2017年02月25日 (土) 10:00～27日 (月)15:00 (JST)
